@@ -8,6 +8,7 @@ const login = require('./controllers/login');
 const auth = require('./middlewares/auth');
 const User = require('./models/user');
 const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -19,6 +20,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useCreateIndex: true,
   useFindAndModify: false,
 });
+
+app.use(requestLogger);
 
 User.syncIndexes();
 
@@ -41,6 +44,8 @@ app.post('/signup', celebrate({
 
 app.use('/users', auth, routerUsers);
 app.use('/cards', auth, routerCards);
+
+app.use(errorLogger);
 
 app.use(errors());
 
