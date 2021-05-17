@@ -1,0 +1,13 @@
+.header__icon {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .header__icon {
+        display: block;
+        min-width: 24px;
+        min-height: 24px;
+        max-width: 30px;
+        max-width: 30px;
+    }
+}

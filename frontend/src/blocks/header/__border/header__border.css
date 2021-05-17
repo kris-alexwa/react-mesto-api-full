@@ -1,0 +1,9 @@
+@media screen and (max-width: 767px) {
+    .header__border {
+        border-top-style: solid;
+        border-top-color: #545454;
+        border-top-width: 1px;
+        padding-top: 20px;
+        margin: 0;
+    }
+}

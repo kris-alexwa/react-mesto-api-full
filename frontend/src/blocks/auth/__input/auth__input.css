@@ -1,0 +1,13 @@
+.auth__input {
+    background-color: black;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 14px;
+    color: #CCCCCC;
+    padding-bottom: 13px;
+}
+
+.auth__input:first-child {
+    margin-bottom: 30px;
+}

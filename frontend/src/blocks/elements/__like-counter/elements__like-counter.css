@@ -1,0 +1,11 @@
+.elements__like-counter {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: black;
+    width: 22px;
+    height: 19px;
+    text-align: center;
+    margin: 0;
+}

@@ -1,0 +1,18 @@
+.popup__form-field {
+    max-width: 358px;
+}
+
+.popup__form-field:first-child {
+    margin-bottom: 30px;
+}
+
+.popup__form-field:nth-child(2n) {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__form-field {
+        max-width: 238px;
+        margin: auto;
+    }
+}

@@ -1,0 +1,14 @@
+.button {
+    border-color: #FFFFFF;
+    border-width: 1px;
+    padding: 0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button:disabled {
+    cursor: default;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.2);
+    background: none;
+}

@@ -1,0 +1,17 @@
+.popup__close-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    grid-column: 2;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__close-button {
+        grid-column: 1;
+        justify-self: end;
+        width: 26px;
+        height: 26px;
+        margin-bottom: 14px;
+    }
+}

@@ -1,0 +1,7 @@
+.elements__list-item {
+    padding-bottom: 22px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+}

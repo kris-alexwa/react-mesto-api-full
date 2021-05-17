@@ -1,0 +1,15 @@
+.popup__wrapper {
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto;
+    justify-content: end;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__wrapper {
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2, auto);
+        align-items: flex-end;
+    }
+}

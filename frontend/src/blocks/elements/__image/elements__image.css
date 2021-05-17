@@ -1,0 +1,25 @@
+.elements__image {
+    width: 282px;
+    height: 282px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-bottom: 25px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.elements__image:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 1023px) {
+    .elements__image {
+        width: 342px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .elements__image {
+        width: 282px;
+    }
+}

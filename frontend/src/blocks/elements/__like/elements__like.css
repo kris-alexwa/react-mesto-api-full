@@ -1,0 +1,8 @@
+.elements__like {
+    background-image: url(../../../images/icons/elements-icon.svg);
+    min-width: 22px;
+    height: 19px;
+    align-self: center;
+    border: none;
+    outline: none;
+}

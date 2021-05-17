@@ -1,0 +1,9 @@
+.button_icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.5s ease;
+}
+
+.button_icon:hover {
+    opacity: 0.6;
+}

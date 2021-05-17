@@ -1,0 +1,5 @@
+.popup__picture-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+}

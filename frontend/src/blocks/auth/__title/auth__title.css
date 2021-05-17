@@ -1,0 +1,13 @@
+.auth__title {
+    font-weight: 900;
+    font-style: normal;
+    font-size: 24px;
+    margin: 0 0 50px 0;
+    align-self: center;
+}
+
+@media screen and (max-width: 767px) {
+    .auth__title {
+        font-size: 20px;
+    }
+}

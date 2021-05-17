@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    min-width: 880px;
+    border-bottom-style: solid;
+    border-bottom-color: #545454;
+    border-bottom-width: 1px;
+    padding-bottom: 41px;
+    margin-top: 45px;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1023px) {
+    .header {
+        min-width: 700px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        max-width: 320px;
+        min-width: 320px;
+        padding-bottom: 32px;
+        margin-top: 28px;
+    }
+}

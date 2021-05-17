@@ -1,0 +1,13 @@
+.profile__avatar-wrapper {
+    max-width: 120px;
+    justify-self: center;
+}
+
+.profile__avatar-wrapper:hover {
+    background-image: url(../../../images/icons/pen-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    top: 0;
+    left: 0;
+}
