@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.mesto-kris.nomoredomains.monster';
 
 //вернет объект data с полями _id и email
 //вернет 400 если некорректно заполнено одно из полей

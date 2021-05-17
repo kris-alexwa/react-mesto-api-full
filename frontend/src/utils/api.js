@@ -86,4 +86,4 @@
      }
  }
 
- export const api = new Api({ url: 'https://mesto.nomoreparties.co/v1/cohort-20', headers: { authorization: '5a464b6a-875e-4db2-8e27-5f32a942d06e' } })
+ export const api = new Api({ url: 'https://api.mesto-kris.nomoredomains.monster' })
