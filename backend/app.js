@@ -9,13 +9,13 @@ const auth = require('./middlewares/auth');
 const User = require('./models/user');
 const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors } = require('./middlewares/cors');
+const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
-app.options('*', cors);
+
 app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
