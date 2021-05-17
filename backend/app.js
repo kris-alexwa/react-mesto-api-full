@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 const routerUsers = require('./routes/users');
@@ -9,7 +10,6 @@ const auth = require('./middlewares/auth');
 const User = require('./models/user');
 const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
