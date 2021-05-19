@@ -10,8 +10,9 @@ const auth = require('./middlewares/auth');
 const User = require('./models/user');
 const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+require('dotenv').config();
 
-const { PORT = 5000 } = process.env;
+const { PORT } = process.env;
 const app = express();
 
 app.use(express.json());
