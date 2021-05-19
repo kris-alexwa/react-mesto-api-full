@@ -11,12 +11,12 @@ const User = require('./models/user');
 const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 5000 } = process.env;
 const app = express();
 
 app.use(express.json());
 
-app.options('*', cors);
+app.options('*', cors());
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],

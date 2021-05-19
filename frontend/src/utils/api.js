@@ -86,5 +86,5 @@
      }
  }
 
-export const api = new Api({ url: 'https://api.mesto-kris.nomoredomains.monster' })
-//  export const api = new Api({ url: 'http://localhost:5000' })
+// export const api = new Api({ url: 'https://api.mesto-kris.nomoredomains.monster' })
+ export const api = new Api({ url: 'http://localhost:5000' })

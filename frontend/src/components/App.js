@@ -77,11 +77,12 @@ function App() {
 
     function handleDeleteCardConfirmation() {
         setCardDeleteLoading(true)
+        console.log(popupConfirmationCard._id)
         api.deleteCard(popupConfirmationCard._id, token)
             .then(() => {
                 setIsPopupConfirmationOpen(false)
                 setPopupConfirmationCard(null)
-                setCards((state) => state.filter((item) =>  item._id !== popupConfirmationCard._id))
+                setCards((state) => state.filter((item) => item._id !== popupConfirmationCard._id))
                 setCardDeleteLoading(false)
             })
             .catch(err => {

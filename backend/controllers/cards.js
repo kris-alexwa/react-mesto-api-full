@@ -28,12 +28,12 @@ function deleteCard(req, res, next) {
       if (!card) {
         throw new NotFoundError(`Карточка с указанным id ${req.params.cardId} не найдена`);
       }
-      if (req.user._id !== card.owner) {
+      if (req.user._id !== card.owner.toString()) {
         throw new ForbiddenError('Нельзя удалить чужую карточку');
       }
     })
     .then(() => Card.findByIdAndRemove(req.params.cardId))
-    .then(() => res.send('Карточка удалена'))
+    .then(() => res.send({ message: 'Карточка удалена' }))
     .catch((err) => {
       if (err.name === 'CastError') {
         throw new ValidationError(`Перадан некорректный id ${req.params.cardId}`);
