@@ -46,6 +46,7 @@ function App() {
     function avatarPopupCloseClickHandler() {
         setIsEditAvatarPopupOpen(false)
     }
+    const token = localStorage.getItem('token');
 
     const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [imagePopupTitle, setImagePopupTitle] = React.useState('');
@@ -76,11 +77,11 @@ function App() {
 
     function handleDeleteCardConfirmation() {
         setCardDeleteLoading(true)
-        api.deleteCard(popupConfirmationCard._id)
+        api.deleteCard(popupConfirmationCard._id, token)
             .then(() => {
                 setIsPopupConfirmationOpen(false)
                 setPopupConfirmationCard(null)
-                setCards((state) => state.filter((item) => item._id !== popupConfirmationCard._id))
+                setCards((state) => state.filter((item) =>  item._id !== popupConfirmationCard._id))
                 setCardDeleteLoading(false)
             })
             .catch(err => {
@@ -90,10 +91,15 @@ function App() {
             })
     }
 
+    const [loggedIn, setLoggedIn] = React.useState(false);
+
     const [currentUser, setCurrentUser] = React.useState({});
 
     React.useEffect(() => {
-        api.getUserInfo()
+        if (!loggedIn) {
+            return;
+        }
+        api.getUserInfo(token)
             .then((res) => {
                 setCurrentUser({ name: res.name, about: res.about, avatar: res.avatar, id: res._id })
             })
@@ -101,14 +107,14 @@ function App() {
                 alert('Не удалось загрузить информацию о пользователе');
                 console.log(err);
             })
-    }, [])
+    }, [loggedIn])
 
     const [updateUserLoading, setUpdateUserLoading] = React.useState(false);
     const [createCardLoading, setCreateCardLoading] = React.useState(false);
 
     function handleUpdateUser(newUserInfo) {
         setUpdateUserLoading(true)
-        api.editProfile(newUserInfo)
+        api.editProfile(newUserInfo, token)
             .then((res) => {
                 setCurrentUser({ name: res.name, about: res.about, avatar: res.avatar, id: res._id })
                 setIsEditProfilePopupOpen(false)
@@ -123,7 +129,7 @@ function App() {
 
     function handleUpdateAvatar(newUserInfo) {
         setUpdateUserLoading(true)
-        api.updateUserAvatar(newUserInfo.avatar)
+        api.updateUserAvatar(newUserInfo.avatar, token)
             .then((res) => {
                 setCurrentUser({ name: res.name, about: res.about, avatar: res.avatar, id: res._id })
                 setIsEditAvatarPopupOpen(false)
@@ -139,24 +145,27 @@ function App() {
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
-        api.getInitialCards()
+        if (!loggedIn) {
+            return;
+        }
+        api.getInitialCards(token)
             .then(res => setCards(res))
             .catch(err => {
                 alert('Не удалось загрузить карточку');
                 console.log(err);
             })
-    }, [])
+    }, [loggedIn])
 
     function handleCardLike(card, isLiked) {
         if (isLiked) {
-            api.deleteLikeCard(card._id)
+            api.deleteLikeCard(card._id, token)
                 .then((newCard) => setCards((state) => state.map((c) => c._id === card._id ? newCard : c)))
                 .catch(err => {
-                    alert('Не удалось поставить лайк карточке');
+                    alert('hhhhhhhhНе удалось поставить лайк карточке');
                     console.log(err);
                 })
         } else {
-            api.likeCard(card._id)
+            api.likeCard(card._id, token)
                 .then((newCard) => setCards((state) => state.map((c) => c._id === card._id ? newCard : c)))
                 .catch(err => {
                     alert('Не удалось поставить лайк карточке');
@@ -167,8 +176,9 @@ function App() {
 
     function handleAddPlaceSubmit(newCard) {
         setCreateCardLoading(true)
-        api.saveNewCard(newCard)
+        api.saveNewCard(newCard, token)
             .then((res) => {
+                // console.log(res)
                 setCards([res, ...cards])
                 setIsAddPlacePopupOpen(false)
                 setCreateCardLoading(false)
@@ -180,7 +190,7 @@ function App() {
             })
     }
 
-    const [loggedIn, setLoggedIn] = React.useState(false);
+    const history = useHistory();
 
     function handleLogin(email, password) {
         return userAuth.authorize(email, password).then(() => {
@@ -199,8 +209,6 @@ function App() {
 
     const [userData, setUserData] = React.useState({})
 
-    const history = useHistory();
-
     React.useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -208,14 +216,14 @@ function App() {
             .then((res) => {
                 if (res) {
                     const newUserData = {
-                         email: res.data.email
+                         email: res.email
                     }
                     setLoggedIn(true)
                     setUserData(newUserData)
                     history.push('/')
                 }
             })
-            .catch(() => {
+            .catch((err) => {
                 localStorage.removeItem('token')
                 setLoggedIn(false)
             })
@@ -228,7 +236,6 @@ function App() {
         setUserData({})
         history.push('/sign-in')
     }
-
 
     return (
         <>

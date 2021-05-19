@@ -14,26 +14,26 @@
      }
 
      //Загрузка карточек с сервера
-     getInitialCards() {
+     getInitialCards(token) {
          return fetch(this._url + "/cards", {
-                 headers: this.headers
+                 headers: {...this.headers, 'Authorization': `Bearer ${token}` }
              })
              .then(this._checkResponse)
      }
 
      //Загрузка информации о пользователе с сервера
-     getUserInfo() {
+     getUserInfo(token) {
          return fetch(this._url + "/users/me", {
-                 headers: this.headers
+                 headers: {...this.headers, 'Authorization': `Bearer ${token}` }
              })
              .then(this._checkResponse)
      }
 
      //Редактировать профиль
-     editProfile(data) {
+     editProfile(data, token) {
          return fetch(this._url + "/users/me", {
                  method: 'PATCH',
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                  body: JSON.stringify({
                      name: data.name,
                      about: data.about
@@ -43,47 +43,48 @@
      }
 
      //Добавление новой карточки
-     saveNewCard(data) {
+     saveNewCard(data, token) {
          return fetch(this._url + "/cards", {
                  method: "POST",
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                  body: JSON.stringify(data)
              })
              .then(this._checkResponse)
      }
 
-     deleteCard(id) {
+     deleteCard(id, token) {
          return fetch(this._url + "/cards/" + id, {
                  method: "DELETE",
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
              })
              .then(this._checkResponse)
      }
 
-     likeCard(id) {
-         return fetch(this._url + "/cards/likes/" + id, {
+     likeCard(id, token) {
+         return fetch(this._url + "/cards/" + id + "/likes/", {
                  method: "PUT",
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
              })
              .then(this._checkResponse)
      }
 
-     deleteLikeCard(id) {
-         return fetch(this._url + "/cards/likes/" + id, {
+     deleteLikeCard(id, token) {
+         return fetch(this._url + "/cards/" + id + "/likes/", {
                  method: "DELETE",
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
              })
              .then(this._checkResponse)
      }
 
-     updateUserAvatar(avatarLink) {
+     updateUserAvatar(avatarLink, token) {
          return fetch(this._url + "/users/me/avatar", {
                  method: 'PATCH',
-                 headers: {...this.headers, 'Content-Type': 'application/json' },
+                 headers: {...this.headers, 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                  body: JSON.stringify({ avatar: avatarLink })
              })
              .then(this._checkResponse)
      }
  }
 
- export const api = new Api({ url: 'https://api.mesto-kris.nomoredomains.monster' })
+export const api = new Api({ url: 'https://api.mesto-kris.nomoredomains.monster' })
+//  export const api = new Api({ url: 'http://localhost:5000' })

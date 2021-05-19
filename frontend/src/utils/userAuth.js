@@ -1,16 +1,17 @@
+// export const BASE_URL = 'http://localhost:5000';
 export const BASE_URL = 'https://api.mesto-kris.nomoredomains.monster';
 
 //вернет объект data с полями _id и email
 //вернет 400 если некорректно заполнено одно из полей
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ password: password, email: email })
-        })
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ password: password, email: email })
+    })
         .then(checkResponse);
 }
 
@@ -18,13 +19,13 @@ export const register = (email, password) => {
 //вернет 400 если не передано одно из полей, 401 - пользователь с email не найден
 export const authorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email: email, password: password })
-        })
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email, password: password })
+    })
         .then(checkResponse)
         .then((data) => {
             localStorage.setItem('token', data.token)
@@ -36,13 +37,15 @@ export const authorize = (email, password) => {
 //вернет 401 если некорректный токен
 export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        })
+        // credentials: 'include',
+        // withCredentials: true,
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
         .then(checkResponse);
 }
 
