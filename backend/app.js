@@ -12,7 +12,7 @@ const { ErrorWithStatusCode, NotFoundError } = require('./errors/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 require('dotenv').config();
 
-const { PORT } = process.env;
+const { PORT = 5000 } = process.env;
 const app = express();
 
 app.use(express.json());
