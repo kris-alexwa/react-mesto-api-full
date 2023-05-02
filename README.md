@@ -27,5 +27,3 @@ npm start
 ```
 Если вы все сделали правильно, то сайт откроет во вкладке браузера по адресу http://localhost:3000/sign-in
 
-Сайт всегда доступен по адресу: https://mesto-kris.nomoredomains.icu/sign-in
-
